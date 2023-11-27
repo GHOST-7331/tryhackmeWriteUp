@@ -154,3 +154,34 @@ $ cat "second ingredients"
 cat "second ingredients"
 1 jerry tear
 
+╔══════════╣ Sudo version
+╚ https://book.hacktricks.xyz/linux-unix/privilege-escalation#sudo-version                                                                                   
+Sudo version 1.8.16                                                                                                                                          
+
+Vulnerable to CVE-2021-4034
+
+https://github.com/ryaagard/CVE-2021-4034/tree/main
+
+clone this repo on your attacker machine
+
+Start a python server and transfer the files, to run the exploit on the target machine
+
+Run: make
+
+Run: ./exploit
+
+We are now root...
+
+# whoami                                                                              
+whoami
+root
+
+cd root
+# ls
+ls
+3rd.txt  snap
+# cat 3rd.txt
+cat 3rd.txt
+3rd ingredients: fleeb juice
+
+
