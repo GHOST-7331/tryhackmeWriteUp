@@ -61,4 +61,10 @@ Domain: WORKGROUP
 Hotfixes: Information not available
 Hyper-V: Hypervisor detected
 
+https://www.exploit-db.com/exploits/47128
+
+metasploit: 0  exploit/windows/local/appxsvc_hard_link_privesc 
+
+https://www.infosecmatter.com/metasploit-module-library/?mm=exploit/windows/local/appxsvc_hard_link_privesc
+
 
