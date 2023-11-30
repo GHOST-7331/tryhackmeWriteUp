@@ -67,4 +67,6 @@ metasploit: 0  exploit/windows/local/appxsvc_hard_link_privesc
 
 https://www.infosecmatter.com/metasploit-module-library/?mm=exploit/windows/local/appxsvc_hard_link_privesc
 
+https://www.puckiestyle.nl/meterpreter-reverse-shell-with-powershell/
+
 
