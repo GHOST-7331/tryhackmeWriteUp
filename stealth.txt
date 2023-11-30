@@ -41,6 +41,8 @@ THM{****************}
 
 Manual Windows Priv: https://www.absolomb.com/2018-01-26-Windows-Privilege-Escalation-Guide/
 
+We can't run winpeas so we need to either create a ps1 script to upload or use one in the wild: https://github.com/absolomb/WindowsEnum/blob/master/WindowsEnum.ps1
+
 systeminfo:
 
 System Information Summary:
