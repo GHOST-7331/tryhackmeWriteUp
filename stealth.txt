@@ -71,4 +71,6 @@ https://www.infosecmatter.com/metasploit-module-library/?mm=exploit/windows/loca
 
 https://www.puckiestyle.nl/meterpreter-reverse-shell-with-powershell/
 
+The system was filtering only on uploading so making a invoke request into the log foler didn't check the file and was able to get a meterpreter shell. 
+
 
