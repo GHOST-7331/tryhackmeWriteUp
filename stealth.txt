@@ -39,6 +39,8 @@ After removing all the logs, I successfully retrieved the first flag:
 
 THM{****************}
 
+Manual Windows Priv: https://www.absolomb.com/2018-01-26-Windows-Privilege-Escalation-Guide/
+
 systeminfo:
 
 System Information Summary:
