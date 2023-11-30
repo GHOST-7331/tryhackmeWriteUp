@@ -31,7 +31,9 @@ $StreamReader.Close();
 $StreamWriter.Close()
 Successfully, this granted me a low-level shell access.
 
-While exploring the file system, I discovered a URL: http://10.10.34.210:8000/asdasdadasdjakjdnsdfsdfs.php.
+In this directory we find an base64 encoded message: C:\Users\evader\Desktop
+
+After decoding this message we get a url: http://10.10.34.210:8000/asdasdadasdjakjdnsdfsdfs.php.
 
 It seems that the Blue team was alerted. A hint suggested that I should delete the file upload logs to access the page. The log files were located at C:\xampp\htdocs\uploads.
 
