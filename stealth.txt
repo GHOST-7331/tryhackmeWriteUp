@@ -89,6 +89,8 @@ DHCP Enabled: Yes
 DHCP Server: 10.10.0.1
 IP address(es):
 
+We can notice there is no hotfixes on this system. 
+
 https://www.exploit-db.com/exploits/47128
 
 metasploit: 0  exploit/windows/local/appxsvc_hard_link_privesc 
