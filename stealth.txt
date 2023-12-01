@@ -48,20 +48,46 @@ We can't run winpeas so we need to either create a ps1 script to upload or use o
 systeminfo:
 
 System Information Summary:
+System Information
+
 Host Name: HOSTEVASION
-OS: Windows Server 2019 Datacenter, Version 10.0.17763 Build 17763
-Install Date: 3/17/2021
-System Uptime: Since 11/30/2023
-Hardware: Xen HVM domU, x64-based PC
-Processor: Intel64 Family 6 Model 63 Stepping 2, ~2400 Mhz
-BIOS Version: Xen 4.11.amazon (Dated 8/24/2006)
-Memory: 4,096 MB total, 2,787 MB available
-Virtual Memory: 4,800 MB max size, 3,401 MB available
-Network Interface: AWS PV Network Device, IP 10.10.34.210
-DHCP Server: 10.10.0.1
+OS Name: Microsoft Windows Server 2019 Datacenter
+OS Version: 10.0.17763 N/A Build 17763
+OS Manufacturer: Microsoft Corporation
+OS Configuration: Standalone Server
+OS Build Type: Multiprocessor Free
+Registered Owner: EC2
+Registered Organization: Amazon.com
+Product ID: 00430-00000-00000-AA191
+Original Install Date: 3/17/2021, 2:59:06 PM
+System Boot Time: 12/1/2023, 11:21:16 PM
+System Manufacturer: Xen
+System Model: HVM domU
+System Type: x64-based PC
+Processor(s): 1 Processor(s) Installed.
+01: Intel64 Family 6 Model 63 Stepping 2 GenuineIntel ~2400 Mhz
+BIOS Version: Xen 4.11.amazon, 8/24/2006
+Windows Directory: C:\Windows
+System Directory: C:\Windows\system32
+Boot Device: \Device\HarddiskVolume1
+System Locale: en-us; English (United States)
+Input Locale: en-us; English (United States)
+Time Zone: (UTC) Coordinated Universal Time
+Total Physical Memory: 4,096 MB
+Available Physical Memory: 2,914 MB
+Virtual Memory: Max Size: 4,800 MB
+Virtual Memory: Available: 3,609 MB
+Virtual Memory: In Use: 1,191 MB
+Page File Location(s): C:\pagefile.sys
 Domain: WORKGROUP
-Hotfixes: Information not available
-Hyper-V: Hypervisor detected
+Logon Server: N/A
+Hotfix(s): N/A
+Network Card(s): 1 NIC(s) Installed.
+01: AWS PV Network Device
+Connection Name: Ethernet
+DHCP Enabled: Yes
+DHCP Server: 10.10.0.1
+IP address(es):
 
 https://www.exploit-db.com/exploits/47128
 
